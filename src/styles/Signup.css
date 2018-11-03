@@ -1,0 +1,59 @@
+.signupPage {
+    margin: 0 35px;
+}
+
+/* .signupPage hr {
+    margin: 0px 41.5px 0px 41.5px;
+} */
+
+.signupPage p {
+    text-align: center;
+    margin: 10px 0;
+}
+
+.signupPage p:nth-of-type(2) {
+    margin: 15px 0;
+}
+
+.form {
+    display: grid;
+    grid-template: repeat(5, 45px) / 100%;
+    grid-template-areas: 'username' 'email' 'passwordOne' 'passwordTwo' 'buttons';
+    grid-row-gap: 40px;
+}
+
+.username {
+    grid-area: username;
+}
+
+.email {
+    grid-area: email;
+}
+
+.passwordOne {
+    grid-area: passwordOne;
+}
+
+.passwordTwo {
+    grid-area: passwordTwo;
+}
+
+.authButtons {
+    grid-area: buttons;
+}
+
+/* .username,
+.email,
+.passwordOne,
+.passwordTwo {
+    margin: 0px 35px 0px 35px;
+} */
+
+.username,
+.email,
+.passwordOne,
+.passwordTwo {
+    border: 1px solid #98B1C4;
+    border-radius: 23px;
+    padding-left: 16px;
+}

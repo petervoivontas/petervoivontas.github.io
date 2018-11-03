@@ -1,0 +1,26 @@
+.authButtons {
+    display: grid;
+    grid-template: 100% / 47px 45px 173px;
+    grid-template-areas: 'google twitter button';
+    grid-column-gap: 21px;
+}
+
+.googleAuth {
+    grid-area: google;
+    width: 47px;
+    height: 47px;
+}
+
+.twitterAuth {
+    grid-area: twitter;
+    width: 45px;
+    height: 45px;
+}
+
+.signupSubmit,
+.loginSubmit {
+    grid-area: button;
+    border: 1px solid #98B1C4;
+    border-radius: 22px;
+    background-color: #98B1C4;
+}
