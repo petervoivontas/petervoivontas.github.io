@@ -30,6 +30,17 @@
     box-sizing: border-box;
 }
 
+.getstartedButton {
+    width: 9em;
+    height: 2.625em;
+    padding-top: 0.65em;
+    padding-bottom: 0.85em;
+    position: relative;
+    top: 1.1875em;
+    left: 1.375em;
+    box-sizing: border-box;
+}
+
 .buttonText {
     color: #FF5733;
     font-size: 1em;
@@ -66,6 +77,20 @@
 }
 
 .loginButton:hover .buttonText {
+    color: white;
+}
+
+.getstartedButton {
+    grid-area: button;
+    border: 1px solid #FF5733;
+    border-radius: 20px;
+}
+
+.getstartedButton:hover {
+    background-color: #FF5733;
+}
+
+.getstartedButton:hover .buttonText {
     color: white;
 }
 

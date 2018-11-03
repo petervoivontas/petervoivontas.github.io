@@ -20,11 +20,12 @@ export class AuthButtons extends React.Component {
         super(props);
         this.state = {
             buttonText: '',
-            className: '',
+            buttonClassName: '',
             username: '',
             email: '',
             passwordOne: '',
             passwordTwo: '',
+            password: '',
             user: null
         }
         this.handleEmailSignup = this.handleEmailSignup.bind(this);
@@ -35,28 +36,38 @@ export class AuthButtons extends React.Component {
         if (this.props.page === 'signup') {
             this.setState({
                 buttonText: 'Sign Up',
-                className: 'signupSubmit'
+                buttonClassName: 'signupSubmit'
             });
         } else {
             this.setState({
                 buttonText: 'Log In',
-                className: 'loginSubmit'
+                buttonClassName: 'loginSubmit'
             });
         }
     }
 
     componentDidMount () {
-        const username = $('.username').val().trim();
-        const email = $('.email').val().trim();
-        const passwordOne = $('.passwordOne').val().trim();
-        const passwordTwo = $('.passwordTwo').val().trim();
+        if (this.props.page === 'signup') {
+            const username = $('.username').val().trim();
+            const email = $('.email').val().trim();
+            const passwordOne = $('.passwordOne').val().trim();
+            const passwordTwo = $('.passwordTwo').val().trim();
 
-        this.setState({
-            username: username,
-            email: email,
-            passwordOne: passwordOne,
-            passwordTwo: passwordTwo
-        });
+            this.setState({
+                username: username,
+                email: email,
+                passwordOne: passwordOne,
+                passwordTwo: passwordTwo
+            });
+        } else {
+            const email = $('.email').val().trim();
+            const password = $('.password').val().trim();
+
+            this.setState({
+                email: email,
+                password: password
+            });
+        }
 
         auth.onAuthStateChanged(user => {
             if (user) {
@@ -87,6 +98,8 @@ export class AuthButtons extends React.Component {
                 });
 
             event.preventDefault();
+        } else {
+            console.log('Passwords do not match');
         }
     }
 
@@ -115,7 +128,7 @@ export class AuthButtons extends React.Component {
             <div className='authButtons'>
                 <img className='googleAuth' src={googleIcon} alt='Google Auth' onClick={this.handleGoogleSignup}/>
                 <img className='twitterAuth' src={twitterIcon} alt='Twitter Auth'/>
-                <button className={this.state.className} type='submit'>{this.state.buttonText}</button>
+                <button className={this.state.buttonClassName} type='submit'>{this.state.buttonText}</button>
             </div>
         )
     }

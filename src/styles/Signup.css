@@ -15,7 +15,7 @@
     margin: 15px 0;
 }
 
-.form {
+.signupForm {
     display: grid;
     grid-template: repeat(5, 45px) / 100%;
     grid-template-areas: 'username' 'email' 'passwordOne' 'passwordTwo' 'buttons';
