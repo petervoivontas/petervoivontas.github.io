@@ -107,10 +107,12 @@ export class AuthButtons extends React.Component {
         auth.signInWithRedirect(provider)
             .then(result => {
                 const user = result.user;
+                console.log(user);
+                console.log(result);
+                document.cookie = `username=${user.displayName}`;
                 this.setState({
                     user: user
                 });
-                this.props.history.push(routes.HOME);
             });
 
         event.preventDefault();

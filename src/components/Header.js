@@ -22,13 +22,23 @@ export class Header extends React.Component {
         this.state = {
             buttonText: '',
             className: '',
-            link: null
+            link: null,
+            searchIconClassName: ''
         }
         this.handleLogoClick = this.handleLogoClick.bind(this);
         this.handleButtonClick = this.handleButtonClick.bind(this);
     }
 
     componentWillMount () {
+        if (this.props.auth === true) {
+            this.setState({
+                searchIconClassName: 'searchIconAuth'
+            })
+        } else {
+            this.setState({
+                searchIconClassName: 'searchIconNonAuth'
+            })
+        }
         if (this.props.page === 'signup') {
             this.setState({
                 buttonText: 'Log In',
@@ -93,7 +103,7 @@ export class Header extends React.Component {
         return (
             <header className='header'>
                 <Link to={routes.HOME}><img className='logo' src={logo} alt='Logo'/></Link>
-                <img className='searchicon' src={searchicon} alt='Search icon'/>
+                <img className={this.state.searchIconClassName} src={searchicon} alt='Search icon'/>
                 <div className={this.state.className}>
                     <Link to={this.state.link}><p className='buttonText' style={{textDecoration: 'none'}}>{this.state.buttonText}</p></Link>
                 </div>

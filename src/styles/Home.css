@@ -1,0 +1,17 @@
+.newStory {
+    width: 42px;
+    height: 42px;
+    border: 1px solid #FF7153;
+    border-radius: 100%;
+    background-color: #FF7153;
+    text-align: center;
+    position: fixed;
+    bottom: 13px;
+    right: 16px;
+}
+.newStory p {
+    transform: translateY(15%);
+    color: white;
+    font-size: 24px;
+    margin: 0 auto;
+}
