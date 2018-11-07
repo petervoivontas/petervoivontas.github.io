@@ -70,13 +70,13 @@ class AuthButtons extends React.Component {
             });
         }
 
-        auth.onAuthStateChanged(user => {
-            if (user) {
-                this.setState({
-                    user: user
-                });
-            }
-        })
+        // auth.onAuthStateChanged(user => {
+        //     if (user) {
+        //         this.setState({
+        //             user: user
+        //         });
+        //     }
+        // })
     }
 
     handleEmailSignup (event) {
@@ -103,15 +103,14 @@ class AuthButtons extends React.Component {
 
     handleGoogleSignup (event) {
         const {
-            cookies
+            cookies,
+            history
         } = this.props;
         auth.signInWithPopup(provider)
             .then(result => {
                 const user = result.user;
-                cookies.set('name', 'peter', {path: routes.SIGNUP});
-                this.setState({
-                    user: user
-                });
+                cookies.set('name', user.displayName, {path: routes.HOME});
+                history.push(routes.HOME);
             });
 
         event.preventDefault();

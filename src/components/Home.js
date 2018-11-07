@@ -1,12 +1,33 @@
 import React from 'react';
 import { Header } from './Header';
+
+import { withCookies } from 'react-cookie';
+
 import '../styles/Home.css';
 
-export class Home extends React.Component {
+class Home extends React.Component {
+    constructor (props) {
+        super(props);
+        this.state = {
+            username: '',
+            auth: false
+        }
+    }
+
+    componentWillMount () {
+        const { allCookies } = this.props;
+        if (allCookies.name) {
+            this.setState({
+                username: allCookies.name,
+                auth: true
+            });
+        }
+        
+    }
     render() {
         return (
             <div className='homePage'>
-                <Header page='home' />
+                <Header page='home' auth={this.state.auth} />
                 <div className='newStory'>
                     <p>+</p>
                 </div>
@@ -14,3 +35,5 @@ export class Home extends React.Component {
         )
     }
 }
+
+export default withCookies(Home);

@@ -19,7 +19,7 @@ export class SignupPage extends React.Component {
                     <p>Your opinion matters</p>
                     <hr />
                     <p>Sign up to Nuntium</p>
-                    <SignupForm/>
+                    <SignupForm history={this.props.history}/>
                 </div>
             </div>
         )
@@ -117,7 +117,7 @@ class SignupForm extends React.Component {
                     type='password'
                     onChange={event => this.setState({passwordTwo: event.target.value})}
                 />
-                <AuthButtons page='signup'/>
+                <AuthButtons page='signup' history={this.props.history}/>
             </form>
         )
     }
