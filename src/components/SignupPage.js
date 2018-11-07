@@ -6,7 +6,7 @@ import {
 import * as authHelpers from '../firebase/auth';
 
 import { Header } from './Header';
-import { AuthButtons } from './AuthButtons';
+import AuthButtons from './AuthButtons';
 
 import '../styles/Signup.css';
 
@@ -19,7 +19,7 @@ export class SignupPage extends React.Component {
                     <p>Your opinion matters</p>
                     <hr />
                     <p>Sign up to Nuntium</p>
-                    <SignupForm />
+                    <SignupForm/>
                 </div>
             </div>
         )

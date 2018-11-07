@@ -105,7 +105,7 @@ export class Header extends React.Component {
                 <Link to={routes.HOME}><img className='logo' src={logo} alt='Logo'/></Link>
                 <img className={this.state.searchIconClassName} src={searchicon} alt='Search icon'/>
                 <div className={this.state.className}>
-                    <Link to={this.state.link}><p className='buttonText' style={{textDecoration: 'none'}}>{this.state.buttonText}</p></Link>
+                    <Link to={this.state.link} style={{textDecoration: 'none'}}><p className='buttonText'>{this.state.buttonText}</p></Link>
                 </div>
             </header>
         )

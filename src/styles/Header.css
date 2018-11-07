@@ -7,8 +7,11 @@
 
 .logo {
     grid-area: logo;
-    width: 100%;
-    height: 100%;
+    width: 65px;
+    height: 65px;
+    position: relative;
+    left: 8px;
+    top: 6px;
 }
 
 .searchIconAuth,
@@ -100,12 +103,12 @@
     color: white;
 }
 
-.buttonText:active,
+/* .buttonText:active,
 .buttonText:hover,
 .buttonText:visited,
 .buttonText:link {
     text-decoration: none;
-}
+} */
 
 /* .signupButton {
     grid-area: button;

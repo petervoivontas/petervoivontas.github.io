@@ -14,8 +14,9 @@ import twitterIcon from '../icons/twitter-icon.png';
 import * as routes from '../constants/routes';
 
 import '../styles/AuthButtons.css';
+import { withCookies } from 'react-cookie';
 
-export class AuthButtons extends React.Component {
+class AuthButtons extends React.Component {
     constructor (props) {
         super(props);
         this.state = {
@@ -79,21 +80,18 @@ export class AuthButtons extends React.Component {
     }
 
     handleEmailSignup (event) {
-        const username = $('.username').val().trim();
+        // const username = $('.username').val().trim();
         const email = $('.email').val().trim();
         const passwordOne = $('.passwordOne').val().trim();
         const passwordTwo = $('.passwordTwo').val().trim();
 
         if (passwordOne === passwordTwo) {
-            authHelpers.signup(email, passwordOne)
-                .then(authUser => {
+            authHelpers.signup(email, passwordOne).then(authUser => {
                     console.log(authUser);
                     this.setState({
                         user: authUser
                     });
-                    this.props.history.push(routes.HOME);
-                })
-                .catch(error => {
+                }).catch(error => {
                     console.log(error);
                 });
 
@@ -104,12 +102,13 @@ export class AuthButtons extends React.Component {
     }
 
     handleGoogleSignup (event) {
-        auth.signInWithRedirect(provider)
+        const {
+            cookies
+        } = this.props;
+        auth.signInWithPopup(provider)
             .then(result => {
                 const user = result.user;
-                console.log(user);
-                console.log(result);
-                document.cookie = `username=${user.displayName}`;
+                cookies.set('name', 'peter', {path: routes.SIGNUP});
                 this.setState({
                     user: user
                 });
@@ -135,3 +134,5 @@ export class AuthButtons extends React.Component {
         )
     }
 }
+
+export default withCookies(AuthButtons);

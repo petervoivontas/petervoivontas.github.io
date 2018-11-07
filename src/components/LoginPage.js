@@ -1,6 +1,6 @@
 import React from 'react';
 import { Header } from './Header';
-import { AuthButtons } from './AuthButtons';
+import AuthButtons from './AuthButtons';
 
 import '../styles/Login.css';
 
