@@ -11,7 +11,7 @@ import { SignupPage } from './SignupPage';
 import { LoginPage } from './LoginPage';
 
 import logo from '../icons/logo.png';
-import searchicon from '../icons/searchicon.png';
+import profileimg from '../icons/profileimg.jpg';
 
 import '../styles/Header.css';
 import * as routes from '../constants/routes';
@@ -22,8 +22,7 @@ export class Header extends React.Component {
         this.state = {
             buttonText: '',
             className: '',
-            link: null,
-            searchIconClassName: ''
+            link: null
         }
         this.handleLogoClick = this.handleLogoClick.bind(this);
         this.handleButtonClick = this.handleButtonClick.bind(this);
@@ -32,31 +31,28 @@ export class Header extends React.Component {
     componentWillMount () {
         if (this.props.auth === true) {
             this.setState({
-                searchIconClassName: 'searchIconAuth'
-            })
-        } else {
-            this.setState({
-                searchIconClassName: 'searchIconNonAuth'
-            })
-        }
-        if (this.props.page === 'signup') {
-            this.setState({
-                buttonText: 'Log In',
-                className: 'loginButton',
-                link: routes.LOGIN
-            });
-        } else if (this.props.page === 'login') {
-            this.setState({
-                buttonText: 'Sign Up',
-                className: 'signupButton',
-                link: routes.SIGNUP
+                link: routes.PROFILE
             });
         } else {
-            this.setState({
-                buttonText: 'Get started',
-                className: 'getstartedButton',
-                link: routes.SIGNUP
-            })
+            if (this.props.page === 'signup') {
+                this.setState({
+                    buttonText: 'Log In',
+                    className: 'loginButton',
+                    link: routes.LOGIN
+                });
+            } else if (this.props.page === 'login') {
+                this.setState({
+                    buttonText: 'Sign Up',
+                    className: 'signupButton',
+                    link: routes.SIGNUP
+                });
+            } else {
+                this.setState({
+                    buttonText: 'Get started',
+                    className: 'getstartedButton',
+                    link: routes.SIGNUP
+                })
+            }
         }
     }
 
@@ -100,14 +96,25 @@ export class Header extends React.Component {
     }
 
     render () {
-        return (
-            <header className='header'>
+        const nonAuthHeader = (
+            <header className='nonAuthHeader'>
                 <Link to={routes.HOME}><img className='logo' src={logo} alt='Logo'/></Link>
-                <img className={this.state.searchIconClassName} src={searchicon} alt='Search icon'/>
+                <input className='searchFieldNonAuth' type='text' autoComplete='off' placeholder='Search...'/>
                 <div className={this.state.className}>
                     <Link to={this.state.link} style={{textDecoration: 'none'}}><p className='buttonText'>{this.state.buttonText}</p></Link>
                 </div>
             </header>
+        )
+
+        const authHeader = (
+            <header className='authHeader'>
+                <Link to={routes.HOME}><img className='logo' src={logo} alt='Logo'/></Link>
+                <input className='searchFieldAuth' type='text' autoComplete='off' placeholder='Search...'/>
+                <img className='profileimg' src={profileimg} alt='User profile' />
+            </header>
+        )
+        return (
+            this.props.auth === true ? authHeader : nonAuthHeader
         )
     }
 }

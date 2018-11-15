@@ -1,17 +1,11 @@
 import React from 'react';
 import { Header } from './Header';
-
 import { withCookies } from 'react-cookie';
 
-import postIcon from '../icons/newstory.svg';
-
-import '../styles/Home.css';
-
-class Home extends React.Component {
+class ProfilePage extends React.Component {
     constructor (props) {
         super(props);
         this.state = {
-            username: '',
             auth: false
         }
     }
@@ -26,18 +20,14 @@ class Home extends React.Component {
         }
         
     }
-    
-    render() {
+
+    render () {
         return (
-            <div className='homePage'>
-                <Header page='home' auth={this.state.auth} />
-                {/* <div className='newStory'>
-                    <p>+</p>
-                </div> */}
-                <img className='newStory' alt='New story button' src={postIcon} />
+            <div>
+                <Header auth={this.state.auth} />
             </div>
         )
     }
 }
 
-export default withCookies(Home);
+export default withCookies(ProfilePage);

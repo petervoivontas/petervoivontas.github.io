@@ -109,7 +109,14 @@ class AuthButtons extends React.Component {
         auth.signInWithPopup(provider)
             .then(result => {
                 const user = result.user;
-                cookies.set('name', user.displayName, {path: routes.HOME});
+                console.log(user);
+                const date = new Date();
+                const expirationDate = new Date(date.getFullYear() + 10, date.getMonth(), date.getDay());
+                console.log(`The cookies expiration date is ${expirationDate}`);
+                cookies.set('name', user.displayName, {
+                    path: routes.HOME,
+                    expires: expirationDate
+                });
                 history.push(routes.HOME);
             });
 

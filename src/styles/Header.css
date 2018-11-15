@@ -1,7 +1,14 @@
-.header {
+.nonAuthHeader {
     display: grid;
     grid-template: 100% / 5em 8.5em 9em;
     grid-template-areas: 'logo search button';
+    z-index: 2;
+}
+
+.authHeader {
+    display: grid;
+    grid-template: 100% / 70px 245px 45px;
+    grid-template-areas: 'logo search image';
     z-index: 2;
 }
 
@@ -11,19 +18,7 @@
     height: 65px;
     position: relative;
     left: 8px;
-    top: 6px;
-}
-
-.searchIconAuth,
-.searchIconNonAuth {
-    grid-area: search;
-    width: 70px;
-    height: 70px;
-    margin-top: 10px;
-}
-
-.searchIconNonAuth {
-    visibility: hidden;
+    top: 4px;
 }
 
 .signupButton,
@@ -101,6 +96,43 @@
 
 .getstartedButton:hover .buttonText {
     color: white;
+}
+
+.profileButton {
+    grid-area: button;
+    border: 1px solid #FF5733;
+    border-radius: 20px;
+    width: 8.25em;
+    height: 2.625em;
+    padding-top: 0.65em;
+    padding-bottom: 0.85em;
+    margin-top: 1.1875em;
+    box-sizing: border-box;
+}
+
+.searchFieldAuth {
+    grid-area: search;
+    border: 1px solid #98B1C4;
+    border-radius: 20px;
+    width: 7.5em;
+    height: 2.625em;
+    padding-top: 0.65em;
+    padding-bottom: 0.65em;
+    box-sizing: border-box;
+    text-align: center;
+    color: #929292;
+    margin: auto 16px auto auto;
+}
+
+.searchFieldNonAuth {
+    visibility: hidden;
+}
+
+.profileimg {
+    width: 35px;
+    height: 35px;
+    border-radius: 24px;
+    margin: auto;
 }
 
 /* .buttonText:active,
