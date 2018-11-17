@@ -1,0 +1,75 @@
+/********************* Profile Page *********************/
+
+.profile {
+    /* display: flex;
+    height: 200px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    align-content: space-between; */
+}
+
+.flex1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.flex2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.profileimg_profile_page {
+    width: 48px;
+    height: 48px;
+    border-radius: 24px;
+    margin: 16px;
+}
+
+.bio_profile_page {
+    width: 187px;
+    height: 72px;
+    text-align: end;
+    font-size: 14px;
+    font-weight: 300;
+    margin-right: 16px;
+}
+
+.username_profile_page {
+    height: 60px;
+    margin-left: 16px;
+    font-weight: 300;
+}
+
+.username_profile_page p {
+    font-size: 24px;
+}
+
+.usernameField {
+    width: 191px;
+    border: none;
+    border-bottom: 1px solid #707070;
+    margin-left: 16px;
+    margin-top: 29px;
+    font-size: 24px;
+    font-weight: 300;
+}
+
+.usernameField:focus {
+    outline: none;
+}
+
+.edit_profile_button {
+    border: 1px solid #474242;
+    border-radius: 9px;
+    width: 89.5px;
+    height: 23.16px;
+    background-color: white;
+    font-size: 13px;
+    align-self: flex-end;
+    margin-right: 16px;
+    margin-bottom: 4px;
+}

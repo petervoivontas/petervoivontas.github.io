@@ -109,8 +109,10 @@ export class Header extends React.Component {
         const authHeader = (
             <header className='authHeader'>
                 <Link to={routes.HOME}><img className='logo' src={logo} alt='Logo'/></Link>
-                <input className='searchFieldAuth' type='text' autoComplete='off' placeholder='Search...'/>
-                <img className='profileimg' src={profileimg} alt='User profile' />
+                <div>
+                    <input className='searchFieldAuth' type='text' autoComplete='off' placeholder='Search...'/>
+                    <Link to={this.state.link} className='profileimg'><img className='profileimg' src={profileimg} alt='User profile' /></Link>
+                </div>
             </header>
         )
         return (
