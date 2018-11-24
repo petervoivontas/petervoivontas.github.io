@@ -1,13 +1,11 @@
 import React from 'react';
 import { Header } from './Header';
 
-import { withCookies } from 'react-cookie';
-
 import postIcon from '../icons/newstory.svg';
 
 import '../styles/Home.css';
 
-class Home extends React.Component {
+export class Home extends React.Component {
     constructor (props) {
         super(props);
         this.state = {
@@ -17,14 +15,12 @@ class Home extends React.Component {
     }
 
     componentWillMount () {
-        const { allCookies } = this.props;
-        if (allCookies.name) {
+        if (window.localStorage.getItem('username')) {
             this.setState({
-                username: allCookies.name,
+                username: window.localStorage.getItem('username'),
                 auth: true
-            });
+            })
         }
-        
     }
     
     render() {
@@ -39,5 +35,3 @@ class Home extends React.Component {
         )
     }
 }
-
-export default withCookies(Home);

@@ -38,7 +38,22 @@
     margin-right: 16px;
 }
 
+.bioField {
+    width: 195px;
+    height: 72px;
+    text-align: end;
+    font-size: 14px;
+    font-weight: 300;
+    margin-right: 16px;
+    border: none;
+    border-bottom: 1px solid #707070;
+    resize: none;
+}
+
 .username_profile_page {
+    display: flex;
+    flex-wrap: wrap;
+    width: 108px;
     height: 60px;
     margin-left: 16px;
     font-weight: 300;
@@ -56,10 +71,6 @@
     margin-top: 29px;
     font-size: 24px;
     font-weight: 300;
-}
-
-.usernameField:focus {
-    outline: none;
 }
 
 .edit_profile_button {

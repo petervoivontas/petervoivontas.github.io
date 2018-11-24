@@ -1,12 +1,7 @@
 import React from 'react';
-import {
-    auth,
-    provider
-} from '../firebase/firebase';
-import * as authHelpers from '../firebase/auth';
 
 import { Header } from './Header';
-import AuthButtons from './AuthButtons';
+import { AuthButtons } from './AuthButtons';
 
 import '../styles/Signup.css';
 
@@ -36,47 +31,6 @@ class SignupForm extends React.Component {
             passwordTwo: '',
             user: null
         }
-        this.handleEmailSignup = this.handleEmailSignup.bind(this);
-        this.handleGoogleSignup = this.handleGoogleSignup.bind(this);
-    }
-
-    componentDidMount () {
-        auth.onAuthStateChanged(user => {
-            if (user) {
-                this.setState({
-                    user: user
-                });
-            }
-        })
-    }
-
-    handleEmailSignup (event) {
-        const {
-            email,
-            passwordOne
-        } = this.state;
-
-        authHelpers.signup(email, passwordOne)
-            .then(authUser => {
-                console.log(authUser);
-            })
-            .catch(error => {
-                console.log(error);
-            });
-
-        event.preventDefault();
-    }
-
-    handleGoogleSignup (event) {
-        auth.signInWithPopup(provider)
-            .then(result => {
-                const user = result.user;
-                this.setState({
-                    user: user
-                });
-            });
-
-        event.preventDefault();
     }
 
     render () {

@@ -5,7 +5,7 @@ import {
 } from 'react-router-dom';
 import * as routes from '../constants/routes';
 
-import Home from './Home';
+import { Home } from './Home';
 import { SignupPage } from './SignupPage';
 import { LoginPage } from './LoginPage';
 import ProfilePage from './ProfilePage';

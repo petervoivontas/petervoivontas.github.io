@@ -14,9 +14,8 @@ import twitterIcon from '../icons/twitter-icon.png';
 import * as routes from '../constants/routes';
 
 import '../styles/AuthButtons.css';
-import { withCookies } from 'react-cookie';
 
-class AuthButtons extends React.Component {
+export class AuthButtons extends React.Component {
     constructor (props) {
         super(props);
         this.state = {
@@ -30,21 +29,8 @@ class AuthButtons extends React.Component {
             user: null
         }
         this.handleEmailSignup = this.handleEmailSignup.bind(this);
+        this.handleEmailLogin = this.handleEmailLogin.bind(this);
         this.handleGoogleSignup = this.handleGoogleSignup.bind(this);
-    }
-
-    componentWillMount () {
-        if (this.props.page === 'signup') {
-            this.setState({
-                buttonText: 'Sign Up',
-                buttonClassName: 'signupSubmit'
-            });
-        } else {
-            this.setState({
-                buttonText: 'Log In',
-                buttonClassName: 'loginSubmit'
-            });
-        }
     }
 
     componentDidMount () {
@@ -80,21 +66,17 @@ class AuthButtons extends React.Component {
     }
 
     handleEmailSignup (event) {
-        // const username = $('.username').val().trim();
+        const {
+            history
+        } = this.props;
+        const username = $('.username').val().trim();
         const email = $('.email').val().trim();
         const passwordOne = $('.passwordOne').val().trim();
         const passwordTwo = $('.passwordTwo').val().trim();
 
         if (passwordOne === passwordTwo) {
-            authHelpers.signup(email, passwordOne).then(authUser => {
-                    console.log(authUser);
-                    this.setState({
-                        user: authUser
-                    });
-                }).catch(error => {
-                    console.log(error);
-                });
-
+            authHelpers.signup(username, email, passwordOne);
+            history.push(routes.HOME);
             event.preventDefault();
         } else {
             console.log('Passwords do not match');
@@ -103,24 +85,23 @@ class AuthButtons extends React.Component {
 
     handleGoogleSignup (event) {
         const {
-            cookies,
             history
         } = this.props;
         auth.signInWithPopup(provider)
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                const date = new Date();
-                const expirationDate = new Date(date.getFullYear() + 10, date.getMonth(), date.getDay());
-                console.log(`The cookies expiration date is ${expirationDate}`);
-                cookies.set('name', user.displayName, {
-                    path: routes.HOME,
-                    expires: expirationDate
-                });
+                window.localStorage.setItem('username', user.displayName);
                 history.push(routes.HOME);
             });
 
         event.preventDefault();
+    }
+
+    handleEmailLogin () {
+        const email = $('.email').val().trim();
+        const password = $('.password').val().trim();
+        authHelpers.signIn(email, password);
     }
 
     render () {
@@ -135,10 +116,12 @@ class AuthButtons extends React.Component {
             <div className='authButtons'>
                 <img className='googleAuth' src={googleIcon} alt='Google Auth' onClick={this.handleGoogleSignup}/>
                 <img className='twitterAuth' src={twitterIcon} alt='Twitter Auth'/>
-                <button className={this.state.buttonClassName} type='submit'>{this.state.buttonText}</button>
+                {this.props.page === 'signup' ?
+                    <button className='signupSubmit' type='submit' onClick={this.handleEmailSignup}>Sign Up</button>
+                    :
+                    <button className='loginSubmit' type='submit' onClick={this.handleEmailLogin}>Log In</button>
+                }
             </div>
         )
     }
 }
-
-export default withCookies(AuthButtons);
