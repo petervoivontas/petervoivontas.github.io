@@ -98,10 +98,12 @@ export class AuthButtons extends React.Component {
         event.preventDefault();
     }
 
-    handleEmailLogin () {
+    handleEmailLogin (event) {
         const email = $('.email').val().trim();
         const password = $('.password').val().trim();
         authHelpers.signIn(email, password);
+
+        event.preventDefault();
     }
 
     render () {

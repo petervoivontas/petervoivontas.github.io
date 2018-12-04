@@ -18,7 +18,10 @@ export const signup = (username, email, password) => {
 }
 
 export const signIn = (email, password) => {
-    auth.signInWithEmailAndPassword(email, password);
+    auth.signInWithEmailAndPassword(email, password)
+        .catch(error => {
+            console.log(`Error during login: ${error}`);
+        });
     const docRef = firestore.doc(`users/${email}`);
     docRef.get().then(doc => {
         if (doc.exists) {
@@ -30,7 +33,7 @@ export const signIn = (email, password) => {
             window.localStorage.setItem('email', docEmail);
         }
     }).catch(error => {
-        console.log(`Error during login: ${error}`);
+        console.log(`Error during retrieving document reference: ${error}`);
     });
 }
 
