@@ -15,4 +15,10 @@ firebase.initializeApp(config);
 export const provider = new firebase.auth.GoogleAuthProvider();
 export const auth = firebase.auth();
 
+// // Reference to Cloud Firestore
+// export const firestore = firebase.firestore();
+
+// // Reference to Storeage
+// export const storageRef = firebase.storage().ref();
+
 export default firebase;

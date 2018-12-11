@@ -13,7 +13,7 @@ export class LoginPage extends React.Component {
                     <p>Welcome back</p>
                     <hr />
                     <p>Log in to Nuntium</p>
-                    <LoginForm />
+                    <LoginForm history={this.props.history} />
                 </div>
             </div>
         )
@@ -52,7 +52,7 @@ class LoginForm extends React.Component {
                         type='password'
                         placeholder='Password'
                     />
-                    <AuthButtons page='login' />
+                    <AuthButtons page='login' history={this.props.history} />
                 </form>
             </div>
         )

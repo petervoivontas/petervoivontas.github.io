@@ -1,6 +1,8 @@
 import { auth } from './firebase';
-import firebase from 'firebase'
+import firebase from 'firebase';
+import profileimg from '../icons/profileimg.jpg';
 const firestore = firebase.firestore();
+const storageRef = firebase.storage().ref();
 
 export const signup = (username, email, password) => {
     auth.createUserWithEmailAndPassword(email, password);
@@ -25,12 +27,14 @@ export const signIn = (email, password) => {
     const docRef = firestore.doc(`users/${email}`);
     docRef.get().then(doc => {
         if (doc.exists) {
-            const docUsername = doc.username;
-            const docEmail = doc.email;
-            console.log(doc);
+            const docUsername = doc.get('username');
+            const docEmail = doc.get('email');
             console.log(`The user's username is ${docUsername}`);
+            console.log(`The user's email is ${docEmail}`);
             window.localStorage.setItem('username', docUsername);
             window.localStorage.setItem('email', docEmail);
+            storageRef.child('images/profileimg').put(profileimg);
+
         }
     }).catch(error => {
         console.log(`Error during retrieving document reference: ${error}`);

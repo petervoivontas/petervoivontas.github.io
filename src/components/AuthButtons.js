@@ -99,9 +99,13 @@ export class AuthButtons extends React.Component {
     }
 
     handleEmailLogin (event) {
+        const { history } = this.props;
         const email = $('.email').val().trim();
         const password = $('.password').val().trim();
         authHelpers.signIn(email, password);
+        setTimeout(() => {
+            history.push(routes.HOME);
+        }, 1000);
 
         event.preventDefault();
     }
